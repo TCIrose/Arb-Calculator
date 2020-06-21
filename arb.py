@@ -77,6 +77,43 @@ class Arb:
         stakesButton = tk.Button(self.master, text = "calculate", command = self.getStakes)
         stakesButton.pack()
 
+        #Outcomes entries(disabled)
+        self.o1 =tk.StringVar()
+        self.ox =tk.StringVar()
+        self.o2 =tk.StringVar()
+
+        outcomesLabel = tk.Label(self.master, text = "Outcomes")
+        outcomesLabel.pack()
+
+        one = tk.Label(self.master, text = "1")
+        one.pack()
+        self.outcome1 = tk.Entry(self.master, textvariable = self.o1)
+        self.outcome1.pack()
+
+        draw = tk.Label(self.master, text = "X")
+        draw.pack()
+        self.outcomex = tk.Entry(self.master, textvariable = self.ox)
+        self.outcomex.pack()
+        
+        two = tk.Label(self.master, text = "2")
+        two.pack()
+        self.outcome2 = tk.Entry(self.master, textvariable = self.o2)
+        self.outcome2.pack()
+
+        #button to get outcomes
+        outcomesButton = tk.Button(self.master, text = "calculate", command = self.getOutcomes)
+        outcomesButton.pack()
+
+        #profit entry(disabled)
+        self.prof = tk.StringVar()
+        profi = tk.Entry(self.master, textvariable = self.prof)
+        profi.pack()
+
+        #button to show profit
+        profitButton = tk.Button(self.master, text = "Calulate Profit", command = self.getProfit)
+        profitButton.pack()
+
+
     def saveodds(self):
         o1 = float(self.odds1.get())
         o2 = float(self.odds2.get())
@@ -88,6 +125,16 @@ class Arb:
         sx = float(self.stakedraw.get())
         s2 = float(self.staketwo.get())
         print(f"{s1} {sx} {s2}")
+
+    def getOutcomes(self):
+        ot1 = float(self.o1.get())
+        otx = float(self.ox.get())
+        ot2 = float(self.o2.get())
+        print(f"{ot1} {otx} {ot2}")
+
+    def getProfit(self):
+        p = float(self.prof.get())
+        print(p)
 
 
 
