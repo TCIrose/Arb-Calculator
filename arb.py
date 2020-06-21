@@ -39,30 +39,38 @@ class Arb:
         savebutton.pack()
 
         #Adding the stake entries and  labels 
-        stakes = tk.Label(self.master, text = "Stake")
-        stakes.pack()
 
         #stakes variables
-        stakeone = tk.StringVar()
-        stakedraw = tk.StringVar()
-        staketwo = tk.StringVar()
+        self.staketotal = tk.StringVar()
+        self.stakeone = tk.StringVar()
+        self.stakedraw = tk.StringVar()
+        self.staketwo = tk.StringVar()
+
+        #total stake entry
+        totalstake = tk.Label(self.master, text = "Total Stake")
+        totalstake.pack()
+        tstake = tk.Entry(self.master, textvariable = self.staketotal)
+        tstake.pack()
+
+        stakes = tk.Label(self.master, text = "Stakes")
+        stakes.pack()
 
         #home team stake
         one = tk.Label(self.master, text = "1")
         one.pack()
-        hstake = tk.Entry(self.master, textvariable = stakeone)
+        hstake = tk.Entry(self.master, textvariable = self.stakeone)
         hstake.pack()
 
         #draw stake
         draw = tk.Label(self.master, text = "X")
         draw.pack()
-        dstake = tk.Entry(self.master, textvariable = stakedraw)
+        dstake = tk.Entry(self.master, textvariable = self.stakedraw)
         dstake.pack()
 
         #away team stake
         two = tk.Label(self.master, text = "2")
         two.pack()
-        astake = tk.Entry(self.master, textvariable = staketwo)
+        astake = tk.Entry(self.master, textvariable = self.staketwo)
         astake.pack()
         
         #button to get stakes
@@ -76,7 +84,10 @@ class Arb:
         print(f"{o1}  {o2}  {o3}")
 
     def getStakes(self):
-        pass
+        s1 = float(self.stakeone.get())
+        sx = float(self.stakedraw.get())
+        s2 = float(self.staketwo.get())
+        print(f"{s1} {sx} {s2}")
 
 
 
