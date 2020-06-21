@@ -12,19 +12,32 @@ class Arb:
         #labels
         title = tk.Label(self.master, text = "ARBITRAGE CALCULATOR")
         title.pack()
-        bookmaker = tk.Label(self.master, text = "Bookmakers Odds")
+        bookmaker = tk.Label(self.master, text = "Odds")
         bookmaker.pack()
         self.odds1 = tk.StringVar()
         self.odds2 = tk.StringVar()
         self.odds3 = tk.StringVar()
+
+        #home team win odds
+        one = tk.Label(self.master, text = "1")
+        one.pack()
         firstentry = tk.Entry(self.master, textvariable = self.odds1)
         firstentry.pack()
+        
+        #draw odds
+        draw = tk.Label(self.master, text = "X")
+        draw.pack()
         secondentry = tk.Entry(self.master, textvariable = self.odds2)
         secondentry.pack()
+
+        #away team wins odds
+        two = tk.Label(self.master, text = "2")
+        two.pack()
         thirdentry = tk.Entry(self.master, textvariable = self.odds3)
         thirdentry.pack()
         savebutton = tk.Button(self.master, text = "save", command = self.saveodds)
         savebutton.pack()
+
         
     def saveodds(self):
         o1 = float(self.odds1.get())
