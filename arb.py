@@ -38,7 +38,34 @@ class Arb:
         savebutton = tk.Button(self.master, text = "save", command = self.saveodds)
         savebutton.pack()
 
+        #Adding the stake entries and  labels 
+        stakes = tk.Label(self.master, text = "Stake")
+        stakes.pack()
+
+        #stakes variables
+        stakeone = tk.StringVar()
+        stakedraw = tk.StringVar()
+        staketwo = tk.StringVar()
+
+        #home team stake
+        one = tk.Label(self.master, text = "1")
+        one.pack()
+        hstake = tk.Entry(self.master, textvariable = stakeone)
+        hstake.pack()
+
+        #draw stake
+        draw = tk.Label(self.master, text = "X")
+        draw.pack()
+        dstake = tk.Entry(self.master, textvariable = stakedraw)
+        dstake.pack()
+
+        #away team stake
+        two = tk.Label(self.master, text = "2")
+        two.pack()
+        astake = tk.Entry(self.master, textvariable = staketwo)
+        astake.pack()
         
+
     def saveodds(self):
         o1 = float(self.odds1.get())
         o2 = float(self.odds2.get())
