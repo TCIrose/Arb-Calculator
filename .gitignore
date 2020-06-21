@@ -1,2 +1,2 @@
 tester.py
-/.pyc*
+__pycache__

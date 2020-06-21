@@ -65,12 +65,18 @@ class Arb:
         astake = tk.Entry(self.master, textvariable = staketwo)
         astake.pack()
         
+        #button to get stakes
+        stakesButton = tk.Button(self.master, text = "calculate", command = self.getStakes)
+        stakesButton.pack()
 
     def saveodds(self):
         o1 = float(self.odds1.get())
         o2 = float(self.odds2.get())
         o3 = float(self.odds3.get())
         print(f"{o1}  {o2}  {o3}")
+
+    def getStakes(self):
+        pass
 
 
 
