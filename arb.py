@@ -38,17 +38,14 @@ class Arb:
         two.pack()
         thirdentry = tk.Entry(self.master, textvariable = self.odds3)
         thirdentry.pack()
-        savebutton = tk.Button(self.master, text = "save", command = self.saveodds)
+        savebutton = tk.Button(self.master, text = "save", command = self.Calc3way)
         savebutton.pack()
 
         #Adding the stake entries and  labels 
 
         #stakes variables
         self.staketotal = tk.StringVar()
-        self.stakeone = tk.StringVar()
-        self.stakedraw = tk.StringVar()
-        self.staketwo = tk.StringVar()
-
+        
         #total stake entry
         totalstake = tk.Label(self.master, text = "Total Stake")
         totalstake.pack()
@@ -61,23 +58,23 @@ class Arb:
         #home team stake
         one = tk.Label(self.master, text = "1")
         one.pack()
-        hstake = tk.Entry(self.master, textvariable = self.stakeone)
-        hstake.pack()
+        self.hstake = tk.Label(self.master, text = 0.00)
+        self.hstake.pack()
 
         #draw stake
         draw = tk.Label(self.master, text = "X")
         draw.pack()
-        dstake = tk.Entry(self.master, textvariable = self.stakedraw)
-        dstake.pack()
+        self.dstake = tk.Label(self.master, text = 0.00)
+        self.dstake.pack()
 
         #away team stake
         two = tk.Label(self.master, text = "2")
         two.pack()
-        astake = tk.Entry(self.master, textvariable = self.staketwo)
-        astake.pack()
+        self.astake = tk.Label(self.master, text = 0.00)
+        self.astake.pack()
         
         #button to get stakes
-        stakesButton = tk.Button(self.master, text = "calculate", command = self.getStakes)
+        stakesButton = tk.Button(self.master, text = "calculate", command = self.Calc3wayStakes)
         stakesButton.pack()
 
         #Outcomes entries(disabled)
@@ -117,7 +114,10 @@ class Arb:
         profitButton.pack()
 
 
-    def saveodds(self):
+    def Calc3way(self):
+        """
+        Method to calculate the percentage of a 3 way arb
+        """
         o1 = float(self.odds1.get())
         o2 = float(self.odds2.get())
         o3 = float(self.odds3.get())
@@ -126,20 +126,48 @@ class Arb:
         o1A = (1/o1)*100
         o1X = (1/o2)*100
         o1B = (1/o3)*100
-        ArbitrageOpportunity = round((o1A + o1X + o1B),2)
+        totalArb = round((o1A + o1X + o1B),2)
         
         #profit entry(disabled)
-        profitEntry = tk.Label(self.master, text = ArbitrageOpportunity)
+        profitEntry = tk.Label(self.master, text = totalArb)
         profitEntry.pack()
-        print(ArbitrageOpportunity)
+        print(totalArb)
         
 
 
-    def getStakes(self):
-        s1 = float(self.stakeone.get())
-        sx = float(self.stakedraw.get())
-        s2 = float(self.staketwo.get())
-        print(f"{s1} {sx} {s2}")
+    def Calc3wayStakes(self):
+        """
+        Method to calculate stake to be placed for each outcome
+        """
+        #Just the total stake input for now
+        o1 = float(self.odds1.get())
+        o2 = float(self.odds2.get())
+        o3 = float(self.odds3.get())
+        
+        #Individual Arbitrage calculation
+        o1A = (1/o1)*100
+        o1X = (1/o2)*100
+        o1B = (1/o3)*100
+        totalArb = round((o1A + o1X + o1B),2)
+
+        #get total stake
+        Tstake = float(self.staketotal.get())
+        
+        #calculate stakes for each outcome
+        stakeA = round(((Tstake*o1A)/totalArb),2)
+        stakeX = round(((Tstake*o1X)/totalArb),2)
+        stakeB = round(((Tstake*o1B)/totalArb),2)
+
+        #configure labels to show stakes
+        self.hstake.configure(text = stakeA)
+
+        self.dstake.configure(text = stakeX)
+        
+        self.astake.configure(text = stakeB)
+
+        print(f"{stakeA} {stakeX} {stakeB}")
+        print(stakeA+stakeB+stakeX)
+        
 
     def getOutcomes(self):
         ot1 = float(self.o1.get())
