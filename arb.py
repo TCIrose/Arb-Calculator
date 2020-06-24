@@ -8,16 +8,19 @@ class Arb:
         #root window
         self.master = master
 
+        #odds variables
+        self.odds1 = tk.StringVar()
+        self.odds2 = tk.StringVar()
+        self.odds3 = tk.StringVar()
+
+
         #widgets
         #labels
         title = tk.Label(self.master, text = "ARBITRAGE CALCULATOR")
         title.pack()
         bookmaker = tk.Label(self.master, text = "Odds")
         bookmaker.pack()
-        self.odds1 = tk.StringVar()
-        self.odds2 = tk.StringVar()
-        self.odds3 = tk.StringVar()
-
+        
         #home team win odds
         one = tk.Label(self.master, text = "1")
         one.pack()
@@ -118,7 +121,19 @@ class Arb:
         o1 = float(self.odds1.get())
         o2 = float(self.odds2.get())
         o3 = float(self.odds3.get())
-        print(f"{o1}  {o2}  {o3}")
+        
+        #Individual Arbitrage calculation
+        o1A = (1/o1)*100
+        o1X = (1/o2)*100
+        o1B = (1/o3)*100
+        ArbitrageOpportunity = round((o1A + o1X + o1B),2)
+        
+        #profit entry(disabled)
+        profitEntry = tk.Label(self.master, text = ArbitrageOpportunity)
+        profitEntry.pack()
+        print(ArbitrageOpportunity)
+        
+
 
     def getStakes(self):
         s1 = float(self.stakeone.get())
