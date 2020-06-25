@@ -94,14 +94,19 @@ class Arb:
         savebutton.pack()
 
 
-        #profit entry(disabled)
-        self.prof = tk.StringVar()
-        profi = tk.Entry(self.master, textvariable = self.prof)
-        profi.pack()
-
-        #button to show profit
-        profitButton = tk.Button(self.master, text = "Calulate Profit", command = self.getProfit)
-        profitButton.pack()
+        #profit labels
+        one = tk.Label(self.master, text = "1")
+        one.pack()
+        self.prof1 = tk.Label(self.master, text = 0.00)
+        self.prof1.pack()
+        draw = tk.Label(self.master, text = "X")
+        draw.pack()
+        self.prof2 = tk.Label(self.master, text = 0.00)
+        self.prof2.pack()
+        two = tk.Label(self.master, text = "3")
+        two.pack()
+        self.prof3 = tk.Label(self.master, text = 0.00)
+        self.prof3.pack()
 
 
     def Calc3way(self):
@@ -124,7 +129,8 @@ class Arb:
 
         #total arbitrage
         totalArb = round((o1A + o1X + o1B),2)
-        arbperc = round((100 - totalArb),2)
+        arbperc = 100 - totalArb
+        print(totalArb)
 
         #profit label
         profitArb = tk.Label(self.master, text = f"{arbperc}%")
@@ -144,6 +150,13 @@ class Arb:
         outcX = round((stakeX*o2),2)
         outcB = round((stakeB*o3),2)
 
+        
+        #profit per outcome
+        pA = round((outcA - Tstake),2)
+        pX = round((outcX - Tstake),2)
+        pB = round((outcB - Tstake),2)
+
+
         #configure labels to show stakes
         self.hstake.configure(text = stakeA)
         self.dstake.configure(text = stakeX)        
@@ -153,11 +166,12 @@ class Arb:
         self.outcome1.configure(text = outcA)
         self.outcomex.configure(text = outcX)
         self.outcome2.configure(text = outcB)
-        
 
-    def getProfit(self):
-        p = float(self.prof.get())
-        print(p)
+        #configure labels to show profit per outcome
+        self.prof1.configure(text = pA)        
+        self.prof2.configure(text = pX)
+        self.prof3.configure(text = pB)
 
+    
 
 
