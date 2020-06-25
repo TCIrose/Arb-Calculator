@@ -129,7 +129,7 @@ class Arb:
 
         #total arbitrage
         totalArb = round((o1A + o1X + o1B),2)
-        arbperc = 100 - totalArb
+        arbperc = round((100 - totalArb), 2)
         print(totalArb)
 
         #profit label
