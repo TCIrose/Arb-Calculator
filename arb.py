@@ -49,6 +49,10 @@ class Arb:
         tstake = tk.Entry(self.master, textvariable = self.staketotal)
         tstake.pack()
 
+        #button to get outcomes
+        savebutton = tk.Button(self.master, text = "save", command = self.Calc3way)
+        savebutton.pack()
+
         stakes = tk.Label(self.master, text = "Stakes")
         stakes.pack()
 
@@ -88,11 +92,6 @@ class Arb:
         two.pack()
         self.outcome2 = tk.Label(self.master, text = 0.00)
         self.outcome2.pack()
-
-        #button to get outcomes
-        savebutton = tk.Button(self.master, text = "save", command = self.Calc3way)
-        savebutton.pack()
-
 
         #profit labels
         one = tk.Label(self.master, text = "1")
