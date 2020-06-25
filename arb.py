@@ -53,6 +53,12 @@ class Arb:
         savebutton = tk.Button(self.master, text = "save", command = self.Calc3way)
         savebutton.pack()
 
+        #total %profit label
+        self.percprofitTag = tk.Label(self.master, text = "Arb percentage")
+        self.percprofitTag.pack()
+        self.percprofitArb = tk.Label(self.master, text = "0.00%")
+        self.percprofitArb.pack()
+
         stakes = tk.Label(self.master, text = "Stakes")
         stakes.pack()
 
@@ -106,6 +112,12 @@ class Arb:
         two.pack()
         self.prof3 = tk.Label(self.master, text = 0.00)
         self.prof3.pack()
+        
+        #total profit label
+        self.profitTag = tk.Label(self.master, text = "Net profit")
+        self.profitTag.pack()
+        self.profitArb = tk.Label(self.master, text = 0.00)
+        self.profitArb.pack()
 
 
     def Calc3way(self):
@@ -128,13 +140,7 @@ class Arb:
 
         #total arbitrage
         totalArb = round((o1A + o1X + o1B),2)
-        arbperc = round((100 - totalArb), 2)
-        print(totalArb)
-
-        #profit label
-        profitArb = tk.Label(self.master, text = f"{arbperc}%")
-        profitArb.pack()
-        print(arbperc)
+        arbperc = round((100 - totalArb),2)
         
         #get total stake
         Tstake = float(self.staketotal.get())
@@ -148,13 +154,16 @@ class Arb:
         outcA = round((stakeA*o1), 2)
         outcX = round((stakeX*o2),2)
         outcB = round((stakeB*o3),2)
-
         
         #profit per outcome
         pA = round((outcA - Tstake),2)
         pX = round((outcX - Tstake),2)
         pB = round((outcB - Tstake),2)
-
+        
+        #find net profit(uses the least of potential profit per outcome)
+        profits = [pA,pX,pB]
+        profits.sort()
+        netProfit = profits[0]
 
         #configure labels to show stakes
         self.hstake.configure(text = stakeA)
@@ -170,6 +179,12 @@ class Arb:
         self.prof1.configure(text = pA)        
         self.prof2.configure(text = pX)
         self.prof3.configure(text = pB)
+
+        #configure the total % profit arb label
+        self.percprofitArb.configure(text = f"{arbperc}%")
+
+        #configure the net profit label
+        self.profitTag.configure(text = netProfit)
 
     
 
