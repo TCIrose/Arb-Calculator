@@ -17,27 +17,27 @@ class Arb:
         #widgets
         #labels
         title = tk.Label(self.master, text = "ARBITRAGE CALCULATOR")
-        title.pack()
+        title.grid(row = 0, column = 10)
         bookmaker = tk.Label(self.master, text = "Odds")
-        bookmaker.pack()
+        bookmaker.grid(row = 2, column = 0)
         
         #home team win odds
         one = tk.Label(self.master, text = "1")
-        one.pack()
+        one.grid(row = 4, column = 0)
         firstentry = tk.Entry(self.master, textvariable = self.odds1)
-        firstentry.pack()
+        firstentry.grid(row = 6, column = 0)
         
         #draw odds
         draw = tk.Label(self.master, text = "X")
-        draw.pack()
+        draw.grid(row = 4, column = 2)
         secondentry = tk.Entry(self.master, textvariable = self.odds2)
-        secondentry.pack()
+        secondentry.grid(row = 6, column = 2)
 
         #away team wins odds
         two = tk.Label(self.master, text = "2")
-        two.pack()
+        two.grid(row = 4, column = 4)
         thirdentry = tk.Entry(self.master, textvariable = self.odds3)
-        thirdentry.pack()
+        thirdentry.grid(row = 6, column = 4)
         
         #Adding the stake entry and  labels 
         #stakes variables
@@ -45,79 +45,79 @@ class Arb:
         
         #total stake entry
         totalstake = tk.Label(self.master, text = "Total Stake")
-        totalstake.pack()
+        totalstake.grid(row = 2, column = 6 )
         tstake = tk.Entry(self.master, textvariable = self.staketotal)
-        tstake.pack()
+        tstake.grid(row = 6, column = 6)
 
         #button to get outcomes
         savebutton = tk.Button(self.master, text = "save", command = self.Calc3way)
-        savebutton.pack()
+        savebutton.grid(row = 8, column = 6)
 
         #total %profit label
         self.percprofitTag = tk.Label(self.master, text = "Arb percentage")
-        self.percprofitTag.pack()
+        self.percprofitTag.grid(row = 2, column = 8)
         self.percprofitArb = tk.Label(self.master, text = "0.00%")
-        self.percprofitArb.pack()
+        self.percprofitArb.grid(row = 6, column = 8)
 
         stakes = tk.Label(self.master, text = "Stakes")
-        stakes.pack()
+        stakes.grid(row = 2, column = 10)
 
         #home team stake
         one = tk.Label(self.master, text = "1")
-        one.pack()
+        one.grid(row = 4, column = 10)
         self.hstake = tk.Label(self.master, text = 0.00)
-        self.hstake.pack()
+        self.hstake.grid(row = 6, column = 10)
 
         #draw stake
         draw = tk.Label(self.master, text = "X")
-        draw.pack()
+        draw.grid(row = 4, column = 12)
         self.dstake = tk.Label(self.master, text = 0.00)
-        self.dstake.pack()
+        self.dstake.grid(row = 6, column = 12)
 
         #away team stake
         two = tk.Label(self.master, text = "2")
-        two.pack()
+        two.grid(row = 4, column = 14)
         self.astake = tk.Label(self.master, text = 0.00)
-        self.astake.pack()
+        self.astake.grid(row = 6, column = 14)
 
         #Outcomes labels
         outcomesLabel = tk.Label(self.master, text = "Outcomes")
-        outcomesLabel.pack()
+        outcomesLabel.grid(row = 2, column = 16)
 
         one = tk.Label(self.master, text = "1")
-        one.pack()
+        one.grid(row = 4, column = 16)
         self.outcome1 = tk.Label(self.master, text = 0.00)
-        self.outcome1.pack()
+        self.outcome1.grid(row = 6, column = 16)
 
         draw = tk.Label(self.master, text = "X")
-        draw.pack()
+        draw.grid(row = 4, column = 18)
         self.outcomex = tk.Label(self.master, text = 0.00)
-        self.outcomex.pack()
+        self.outcomex.grid(row = 6, column = 18)
         
         two = tk.Label(self.master, text = "2")
-        two.pack()
+        two.grid(row = 4, column = 20)
         self.outcome2 = tk.Label(self.master, text = 0.00)
-        self.outcome2.pack()
+        self.outcome2.grid(row = 6, column = 20)
 
         #profit labels
         one = tk.Label(self.master, text = "1")
-        one.pack()
+        one.grid(row = 4, column = 22)
         self.prof1 = tk.Label(self.master, text = 0.00)
-        self.prof1.pack()
+        self.prof1.grid(row = 6, column = 22)
         draw = tk.Label(self.master, text = "X")
-        draw.pack()
+        draw.grid(row = 4, column = 24)
         self.prof2 = tk.Label(self.master, text = 0.00)
-        self.prof2.pack()
+        self.prof2.grid(row = 6, column = 24)
         two = tk.Label(self.master, text = "3")
-        two.pack()
+        two.grid(row = 4, column = 26)
         self.prof3 = tk.Label(self.master, text = 0.00)
-        self.prof3.pack()
+        self.prof3.grid(row = 6, column = 26)
         
         #total profit label
         self.profitTag = tk.Label(self.master, text = "Net profit")
-        self.profitTag.pack()
+        self.profitTag.grid(row = 2, column = 28)
         self.profitArb = tk.Label(self.master, text = 0.00)
-        self.profitArb.pack()
+        self.profitArb.grid(row = 6, column = 28)
 
 
     def Calc3way(self):
@@ -184,7 +184,7 @@ class Arb:
         self.percprofitArb.configure(text = f"{arbperc}%")
 
         #configure the net profit label
-        self.profitTag.configure(text = netProfit)
+        self.profitArb.configure(text = netProfit)
 
     
 
